@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <title>To-Do</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>        
+        <script defer src="script.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #efefef;
+                font-family: 'Work Sans', sans-serif;
+            }
+            table {
+                left: 780px;
+                position: relative;
+            }
+            a {
+                text-decoration: none;
+                color: white;
+            }
+            a:hover {
+                text-decoration: none;
+                color: white;    
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="p-4 bg-primary">
+            <p class="h1 display-3 text-center text-white">To-Do-App</p>
+        </nav>
+        <form action="/new_todo" method="POST">
+            <div class="form-row d-flex justify-content-center">
+              <div class="form-group col-md-2 m-4">
+                <label for="inputEmail4">Type your tasks</label>
+                <input name="new_todo" class="form-control font-weight-bold col-md-12" id="txt-field" placeholder="To-Do">
+              </div>
+            </div>
+            <div class="d-flex align-content-center justify-content-center align-items-center col-md-12">
+                <p id="potential_error"></p>
+                <table class="table table-striped table-responsive align-content-center justify-content-center align-items-center">
+                    <thead>
+                        <tr>
+                            <th>Tasks</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>Done</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- -------------------------------- -->
+                        <% collection.forEach(({ task, _id}) => { %>
+                            <tr>
+                                <td><%= task %></td>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <td><button id="<%= _id %>" class="btn btn-danger"><a href="/<%= _id %>">Delete</a></button></td>
+                            </tr>
+                        <% }); %>
+                        <!-- -------------------------------- -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-row d-flex justify-content-center">
+                <div class="form-group col-md-2 m-4 text-center">
+                    <button class="btn btn-primary form-control col-md-12" id="submit">Add New ToDo</button>
+                </div>
+            </div>        
+        </form>
+    </body>
+</html>
